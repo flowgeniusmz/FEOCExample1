@@ -49,7 +49,7 @@ else:
                             sname = st.text_input("Name")
                             semail = st.text_input("Email")
                             sphone = st.text_input("Phone Number")
-                            demo_form_submit = st.form_submit_button("Submit")  
+                            demo_form_submit = st.form_submit_button("Submit", type="primary", use_container_width=True)  
                 #st.write("Some fancy text")
                 #value = st.checkbox("Check me")
                 #st.write(f"Checkbox checked: {value}")
