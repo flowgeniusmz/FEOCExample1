@@ -3,6 +3,7 @@ from  functions.login import get_loginform
 from functions.pagesetup import set_title, set_page_overview
 from streamlit_modal import Modal
 import streamlit.components.v1 as components
+import datetime
 
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
@@ -52,6 +53,7 @@ else:
                             sname = st.text_input("Name")
                             semail = st.text_input("Email")
                             sphone = st.text_input("Phone Number")
+                            sdate = st.date_input("Desired Date", format="MM/DD/YYYY", min_value=datetime.date(2023, 1,1))
                             demo_form_submit = st.form_submit_button("Submit", type="primary", use_container_width=True)  
                 #st.write("Some fancy text")
                 #value = st.checkbox("Check me")
