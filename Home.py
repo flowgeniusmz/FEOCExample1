@@ -5,7 +5,7 @@ from streamlit_modal import Modal
 import streamlit.components.v1 as components
 
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 if 'authenticated' not in st.session_state:
     get_loginform()
