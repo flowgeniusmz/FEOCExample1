@@ -31,7 +31,7 @@ else:
         st.markdown("""```
                     By choosing to back reduced emission products, you set a commendable standard. Every purchase you make takes us one step closer to a cleaner, better world.
                     """)
-        modal = Modal("", key="mdlDemoRequest")
+        modal = Modal("", key="mdlDemoRequest",)
         demo_modal = st.button("Request Demo", key="btnDemoRequest", type="primary", use_container_width=True)
         if demo_modal:
             modal.open()
@@ -43,6 +43,9 @@ else:
                     cc = st.columns(2)
                     with cc[0]:
                         set_page_overview("Instructions", "Submit the form to request a demo.")
+                        st.markdown("#### Contact Information")
+                        st.markdown("**Phone Number:** 111-222-3333")
+                        st.markdown("**Email:** info@faulkercapital.com")
                     with cc[1]:
                         demo_form = st.form("formdemo")
                         with demo_form:
