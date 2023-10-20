@@ -1,6 +1,6 @@
 import streamlit as st
 from  functions.login import get_loginform
-from functions.pagesetup import set_title
+from functions.pagesetup import set_title, set_page_overview
 from streamlit_modal import Modal
 import streamlit.components.v1 as components
 
@@ -31,26 +31,28 @@ else:
         st.markdown("""```
                     By choosing to back reduced emission products, you set a commendable standard. Every purchase you make takes us one step closer to a cleaner, better world.
                     """)
-        modal = Modal("Request a Demo Modal", key="mdlDemoRequest")
+        modal = Modal("", key="mdlDemoRequest")
         demo_modal = st.button("Request Demo", key="btnDemoRequest", type="primary", use_container_width=True)
         if demo_modal:
             modal.open()
         if modal.is_open():
             with modal.container():
-                st.write("Text goes here")
-
-                html_string = '''
-                <h1>HTML string in RED</h1>
-
-                <script language="javascript">
-                document.querySelector("h1").style.color = "red";
-                </script>
-                '''
-                components.html(html_string)
-
-                st.write("Some fancy text")
-                value = st.checkbox("Check me")
-                st.write(f"Checkbox checked: {value}")
+                set_title("FEOC", "Demo Request Form")
+                modal_container = st.container()
+                with modal_container:
+                    cc = st.columns(2)
+                    with cc[0]:
+                        set_page_overview("Instructions", "Submit the form to request a demo.")
+                    with cc[1]:
+                        demo_form = st.form("formdemo")
+                        with demo_form:
+                            sname = st.text_input("Name")
+                            semail = st.text_input("Email")
+                            sphone = st.text_input("Phone Number")
+                            demo_form_submit = st.form_submit_button("Submit")  
+                #st.write("Some fancy text")
+                #value = st.checkbox("Check me")
+                #st.write(f"Checkbox checked: {value}")
         st.divider()
         col01, col02 = st.columns(2)
         with col01:
