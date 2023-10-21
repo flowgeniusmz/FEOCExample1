@@ -87,7 +87,7 @@ def benefits_container_website():
                 st.markdown("""**Fully Tradable Certificates** <i class="fas fa-exchange-alt" style="color: #442c5c;"></i>""", unsafe_allow_html=True)
                 benefits_exp6 = st.expander("Details", expanded=True)
                 with benefits_exp6:
-                    st.markdown("Designed to be fully vested upon issuance, FEOCs are transferable, and not subject to recapture, accommodating long-term contracts and investment-grade credit ratings.")
+                    st.markdown("Designed to be fully vested upon issuance, FEOCs are transferable, and are not subject to recapture, accommodating long-term contracts and investment-grade credit ratings.")
             with cc_benefits2[2]:
                 st.markdown("""**Full Investment Lifecycle** <i class="fas fa-sync-alt" style="color: #442c5c;"></i>""", unsafe_allow_html=True)
                 benefits_exp7 = st.expander("Details", expanded=True)
