@@ -4,6 +4,9 @@ from functions.pagesetup import set_title, set_page_overview
 from streamlit_modal import Modal
 import streamlit.components.v1 as components
 import datetime
+from functions.callbacks import callback_form_demorequest
+from functions.forms import form_demorequest
+from functions.benefits import benefits_container_website
 
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
@@ -47,26 +50,27 @@ else:
                         st.markdown("#### Contact Information")
                         st.markdown("**Phone Number:** 111-222-3333")
                         st.markdown("**Email:** info@faulkercapital.com")
+                        
                     with cc[1]:
                         demo_form = st.form("formdemo")
                         with demo_form:
-                            sname = st.text_input("Name")
-                            semail = st.text_input("Email")
-                            sphone = st.text_input("Phone Number")
-                            sdate = st.date_input("Desired Date", format="MM/DD/YYYY", min_value=datetime.date(2023, 1,1))
-                            demo_form_submit = st.form_submit_button("Submit", type="primary", use_container_width=True)  
+                            #sname = st.text_input("Name")
+                            #semail = st.text_input("Email")
+                            #sphone = st.text_input("Phone Number")
+                            #sdate = st.date_input("Desired Date", format="MM/DD/YYYY", min_value=datetime.date(2023, 1,1))
+                            #demo_form_submit = st.form_submit_button("Submit", type="primary", use_container_width=True, on_click=callback_form_demorequest(sname, semail, sphone, sdate))
+                            demo_form_submit = form_demorequest()
+                            if demo_form_submit:
+                                modal.close()
+        #st.write(st.session_state.formDemoName)
+                            
                 #st.write("Some fancy text")
                 #value = st.checkbox("Check me")
                 #st.write(f"Checkbox checked: {value}")
         st.divider()
-        col01, col02 = st.columns(2)
-        with col01:
-            st.markdown("#### Harness the power of cutting-edge AI technology.")
-            st.write("Our AI continuously refines and validates data, ensuring accuracy and credibility at every step.")
-        with col02:
-            st.markdown("#### To our vibrant user community")
-            st.write("Your interactions and inputs amplify the effectiveness of our platform. Each one of you is a cog in this grand machinery combating climate change. Together, let's pave the way for a sustainable, verdant future for the next generation.")
+        benefits_container = benefits_container_website()
         st.divider()
+
     main_container = st.container()
     with main_container:
         col1, col2 = st.columns(2)
