@@ -12,3 +12,7 @@ extra-streamlit-components
 hydralit
 hydralit_components
 plotly
+python-dotenv
+covalent
+athway
+requests
