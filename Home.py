@@ -79,38 +79,35 @@ else:
 
     main_container = st.container()
     with main_container:
+        st.markdown("#### Management Portal Actions")
         col1, col2 = st.columns(2)
         with col1:
             container11 = st.container()
             with container11:
-                st.markdown("#### Initiate New Certificate")
-                exp11 = st.expander("New Certificate", expanded=True)
+                st.markdown("**Initiate New Certificate**")
+                exp11 = st.expander("Instructions", expanded=False)
                 with exp11:
-                    st.write("**Instructions**")
                     st.write("Select this option to create a new FEOC providing the necessary information.")
-                    st.button("Create New Certificate", key="btnNewCertificate", type="primary", use_container_width=True)
+                st.button("Create New Certificate", key="btnNewCertificate", type="primary", use_container_width=True)
             container12 = st.container()
             with container12:
-                st.markdown("#### Manage Users")
-                exp12 = st.expander("Users", expanded=True)
+                st.markdown("**Manage Users**")
+                exp12 = st.expander("Instructions", expanded=False)
                 with exp12:
-                    st.write("**Instructions**")
                     st.write("Select this option to manage any user or user-related item associated to an FEOC.")
-                    st.button("Manage Users", key="btnManageUsers", type="primary", use_container_width=True)
+                st.button("Manage Users", key="btnManageUsers", type="primary", use_container_width=True)
         with col2:
             container21 = st.container()
             with container21:
-                st.markdown("#### Manage Existing Certificate")
-                exp21 = st.expander("Existing Certificate", expanded=True)
+                st.markdown("**Manage Existing Certificate**")
+                exp21 = st.expander("Instructions", expanded=False)
                 with exp21:
-                    st.write("**Instructions**")
                     st.write("Select this option to manage an existing FEOC and any related details, activity, or other items.")
-                    st.button("Manage Existing Certificate", key="btnExistingCertificate", type="primary", use_container_width=True)
+                st.button("Manage Existing Certificate", key="btnExistingCertificate", type="primary", use_container_width=True)
             container22 = st.container()
             with container22:
-                st.markdown("#### Manage Audit History")
-                exp22 = st.expander("Audit History", expanded=True)
+                st.markdown("**Manage Audit History**")
+                exp22 = st.expander("Instructions", expanded=False)
                 with exp22:
-                    st.write("**Instructions**")
                     st.write("Select this option to manage and view the audit history for one or more FEOC.")
-                    st.button("Manage Audit History", key="btnAuditHistory", type="primary", use_container_width=True)
+                st.button("Manage Audit History", key="btnAuditHistory", type="primary", use_container_width=True)
