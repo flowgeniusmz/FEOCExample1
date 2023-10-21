@@ -54,21 +54,27 @@ else:
                     with cc[1]:
                         demo_form = st.form("formdemo")
                         with demo_form:
-                            #sname = st.text_input("Name")
-                            #semail = st.text_input("Email")
-                            #sphone = st.text_input("Phone Number")
-                            #sdate = st.date_input("Desired Date", format="MM/DD/YYYY", min_value=datetime.date(2023, 1,1))
-                            #demo_form_submit = st.form_submit_button("Submit", type="primary", use_container_width=True, on_click=callback_form_demorequest(sname, semail, sphone, sdate))
                             demo_form_submit = form_demorequest()
                             if demo_form_submit:
                                 modal.close()
-        #st.write(st.session_state.formDemoName)
-                            
-                #st.write("Some fancy text")
-                #value = st.checkbox("Check me")
-                #st.write(f"Checkbox checked: {value}")
         st.divider()
+        # Custom CSS 
+        st.markdown('''
+            <style>
+            .streamlit-expanderHeader {
+                background-color: #fbbb98;
+                
+            }
+            .streamlit-expanderContent {
+                background-color: #fbbb98;
+                
+            }
+            </style>
+            ''',
+            unsafe_allow_html=True
+        )
         benefits_container = benefits_container_website()
+        unused_button = st.button("Disrupting and redefining the traditional offset market to create measurable change for all.", use_container_width=True, type="primary")
         st.divider()
 
     main_container = st.container()
