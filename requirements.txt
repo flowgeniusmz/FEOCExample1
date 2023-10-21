@@ -16,3 +16,4 @@ python-dotenv
 covalent
 athway
 requests
+prompttools
