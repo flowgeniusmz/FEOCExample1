@@ -11,3 +11,4 @@ streamlit-modal
 extra-streamlit-components
 hydralit
 hydralit_components
+plotly
