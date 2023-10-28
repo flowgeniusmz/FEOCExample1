@@ -1,30 +1,32 @@
 import streamlit as st
-from  functions.login import get_loginform
-from functions.pagesetup import set_title, set_page_overview
+from  functions.login import get_loginform, check_authentication
+from functions.pagesetup import set_title_nodiv, set_title
 from streamlit_modal import Modal
 import streamlit.components.v1 as components
-import datetime
-from functions.callbacks import callback_form_demorequest
-from functions.forms import form_demorequest
-from functions.benefits import benefits_container_website
+from functions.modals import modal_actions_sendemail, modal_home_demorequest
+from functions.pageswitch import switchpage_ActionsPanel, switchpage_AnalyticsPanel, switchpage_AIPanel, switchpage_CentralPerformancePanel, switchpage_SensorPanel
+from functions.styles import theme_expander_header_content, theme_fa_icons
+from streamlit_lottie import st_lottie
+
 
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
-if 'authenticated' not in st.session_state:
-    get_loginform()
-elif not st.session_state.authenticated:
-    get_loginform()
-else:
-    set_title("FEOC", "Home")
+#if 'authenticated' not in st.session_state:
+#    get_loginform()
+#elif not st.session_state.authenticated:
+#    get_loginform()
+#else:
+if check_authentication():
 
-    container0 = st.container()
-    with container0:
+    set_title("FEOC", "Home")
+    containera = st.container()
+    with containera:
         st.markdown("#### Welcome to the Faulkner Emission Solutions Platform!")
-        st.markdown("Introducing the **Faulkner Certificates** - our benchmark for emission offset. These certificates not only validate and track environmental contributions but, with the aid of state-of-the-art AI technology, ensure their authenticity, accuracy, and completeness. Jump in, explore, and be the change you wish to see in the world! We are thrilled to have you join our mission. Whether you're an Emitter, a Provider, a Purchaser, or simply a champion for the environment, this platform aims to unify our collective efforts towards a greener planet.")
+        st.markdown("Introducing the **Faulkner Emission Offset Certificates (FEOCs)** - our benchmark for emission offset. These certificates not only validate and track environmental contributions but, with the aid of state-of-the-art AI technology, ensure their authenticity, accuracy, and completeness. Jump in, explore, and be the change you wish to see in the world! We are thrilled to have you join our mission. Whether you're an Emitter, a Provider, a Purchaser, or simply a champion for the environment, this platform aims to unify our collective efforts towards a greener planet.")
+        #st.divider()
         st.markdown("**Emitters**")
-        st.markdown("""
-                    ``` 
+        st.markdown("""```
                     You are the linchpin of emission reduction, driving us towards a sustainable future. Your investments empower Providers to innovate and bring forth solutions that battle against emissions.
                     """)
         st.markdown("**Providers**")
@@ -35,79 +37,52 @@ else:
         st.markdown("""```
                     By choosing to back reduced emission products, you set a commendable standard. Every purchase you make takes us one step closer to a cleaner, better world.
                     """)
-        modal = Modal("", key="mdlDemoRequest",)
-        demo_modal = st.button("Request Demo", key="btnDemoRequest", type="primary", use_container_width=True)
-        if demo_modal:
-            modal.open()
-        if modal.is_open():
-            with modal.container():
-                set_title("FEOC", "Demo Request Form")
-                modal_container = st.container()
-                with modal_container:
-                    cc = st.columns(2)
-                    with cc[0]:
-                        set_page_overview("Instructions", "Submit the form to request a demo.")
-                        st.markdown("#### Contact Information")
-                        st.markdown("**Phone Number:** 111-222-3333")
-                        st.markdown("**Email:** info@faulkercapital.com")
-                        
-                    with cc[1]:
-                        demo_form = st.form("formdemo")
-                        with demo_form:
-                            demo_form_submit = form_demorequest()
-                            if demo_form_submit:
-                                modal.close()
+        st.link_button("Visit Our Website", "https://faulknercapitalholdings.com/", type="primary", use_container_width=True)
+        #modal1 = modal_home_demorequest()
         st.divider()
-        # Custom CSS 
-        st.markdown('''
-            <style>
-            .streamlit-expanderHeader {
-                background-color: #fbbb98;
+    containerb = st.container()
+    with containerb:
+        containerb1 = st.container()
+        with containerb1:
+            st.markdown("#### Navigating Your Faulkner Emission Offset Certificate")
+            st.markdown("Your **Faulkner Emission Offset Certificate (FEOC)** - provides you with many capabilities related to your project. You can click the items below to navigate to them or use the side bar on the left.")
+            #st.divider()
+        
+        containerb2 = st.container()
+        with containerb2:
+            theme_expander_header_content()
+            theme_fa_icons()
+            cc1 = st.columns(5)
+            with cc1[0]:
+                containerb21 = st.container()
+                with containerb21:
+                    st.markdown("""**Central Performance Panel** <i class="fas fa-tachometer-alt" style="color: #442c5c;"></i>""", unsafe_allow_html=True)
+                    st.markdown("View an overview related to your FEOC.")
+                    switchpage_CentralPerformancePanel()
+            with cc1[1]:
+                containerb22 = st.container()
+                with containerb22:
+                    st.markdown("""**Action Panel** <i class="fas fa-play-circle" style="color: #442c5c;"></i>""", unsafe_allow_html=True)
+                    st.markdown("""Perform certificate-related actions.""")
+                    #st.button("Click to view", key="btnAnalyticsPanel", type="primary", use_container_width=True, on_click=switch_page("Analytics Panel"))
+                    switchpage_AnalyticsPanel()
+            with cc1[2]:
+                containerb23 = st.container()
+                with containerb23:
+                    st.markdown("""**Analytics Panel** <i class="fas fa-chart-line" style="color: #442c5c;"></i>""", unsafe_allow_html=True)
+                    st.markdown("View **real-time** dashboards.")
+                    switchpage_ActionsPanel()
+            with cc1[3]:
+                containerb24 = st.container()
+                with containerb24:
+                    st.markdown("""**AI Panel** <i class="fas fa-brain" style="color: #442c5c;"></i>""", unsafe_allow_html=True)
+                    st.markdown("Interact with AI Autonomous Agents.")
+                    switchpage_AIPanel()
+            with cc1[4]:
+                containerb25 = st.container()
+                with containerb25:
+                    st.markdown("""**Sensor Panel** <i class="fas fa-wave-square" style="color: #442c5c;"></i>""", unsafe_allow_html=True)
+                    st.markdown("Interact with the IoT sensors.")
+                    switchpage_SensorPanel()
                 
-            }
-            .streamlit-expanderContent {
-                background-color: #fbbb98;
-                
-            }
-            </style>
-            ''',
-            unsafe_allow_html=True
-        )
-        benefits_container = benefits_container_website()
-        unused_button = st.button("Disrupting and redefining the traditional offset market to create measurable change for all.", use_container_width=True, type="primary")
-        st.divider()
-
-    main_container = st.container()
-    with main_container:
-        st.markdown("#### Management Portal Actions")
-        col1, col2 = st.columns(2)
-        with col1:
-            container11 = st.container()
-            with container11:
-                st.markdown("**Initiate New Certificate**")
-                exp11 = st.expander("Instructions", expanded=False)
-                with exp11:
-                    st.write("Select this option to create a new FEOC providing the necessary information.")
-                st.button("Create New Certificate", key="btnNewCertificate", type="primary", use_container_width=True)
-            container12 = st.container()
-            with container12:
-                st.markdown("**Manage Users**")
-                exp12 = st.expander("Instructions", expanded=False)
-                with exp12:
-                    st.write("Select this option to manage any user or user-related item associated to an FEOC.")
-                st.button("Manage Users", key="btnManageUsers", type="primary", use_container_width=True)
-        with col2:
-            container21 = st.container()
-            with container21:
-                st.markdown("**Manage Existing Certificate**")
-                exp21 = st.expander("Instructions", expanded=False)
-                with exp21:
-                    st.write("Select this option to manage an existing FEOC and any related details, activity, or other items.")
-                st.button("Manage Existing Certificate", key="btnExistingCertificate", type="primary", use_container_width=True)
-            container22 = st.container()
-            with container22:
-                st.markdown("**Manage Audit History**")
-                exp22 = st.expander("Instructions", expanded=False)
-                with exp22:
-                    st.write("Select this option to manage and view the audit history for one or more FEOC.")
-                st.button("Manage Audit History", key="btnAuditHistory", type="primary", use_container_width=True)
+    st.divider()
